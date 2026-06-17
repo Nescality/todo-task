@@ -20,10 +20,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install deps
+      - name: install
         run: npm install
 
-      - name: Run tests with solution
+      - name: run tests
         run: |
           cp src/solution.js src/index.js
           npm test
@@ -38,7 +38,7 @@ jobs:
           ref: source
           fetch-depth: 0
 
-      - name: Push to main without solution
+      - name: push to main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -46,5 +46,5 @@ jobs:
           git checkout source -- .
           rm -f src/solution.js
           git add -A
-          git commit -m "auto-update from source" || echo "no changes"
+          git commit -m "auto" || echo "no changes"
           git push origin main --force
